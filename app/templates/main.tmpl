@@ -3,7 +3,7 @@
   <head>
     <title>London String Players</title>
     
-    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="/css/bootstrap.css" rel="stylesheet"/>
     <!--link href="css/bootstrap-responsive.css" rel="stylesheet"/-->
     <style type="text/css">
       body {
@@ -105,6 +105,27 @@ meliore raptam, uoce non fausta precor.</p>
           <p><a class="btn" href="#">View details &raquo;</a></p>
         </div>
       </div>
+      <div class="row">
+        <div class="span6">
+          <h2>Comments</h2> 
+      <p><a href="{{ url}}">{{ url_linktext }}</a></p>
+    {% for greeting in greetings %}
+      {% if greeting.author %}
+        <b>{{ greeting.author.nickname() }}</b> wrote:
+      {% else %}
+        An anonymous person wrote:
+      {% endif %}
+      <blockquote>{{ greeting.content|escape }}</blockquote>
+    {% endfor %}
+
+    <form action="/sign" method="post">
+      <div><textarea name="content" rows="3" cols="60"></textarea></div>
+      <div><input class="btn" type="submit" value="Comment"></div>
+    </form>
+
+        </div>
+      </div>
+      
 
       <hr>
 
@@ -113,6 +134,6 @@ meliore raptam, uoce non fausta precor.</p>
       </footer>
     </div> <!--container-->
     <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
